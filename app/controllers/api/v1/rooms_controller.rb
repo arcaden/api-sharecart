@@ -1,6 +1,7 @@
 class Api::V1::RoomsController < ApplicationController
+  before_action :set_room,  only: [:show,:update,:destroy]
+
   def index
-    byebug()
     @room = current_user.rooms(current_user.part_of_id)
     render json: @room, status: :ok
   end

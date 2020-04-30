@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(version: 2020_04_29_033046) do
     t.string "name"
     t.float "price"
     t.text "description"
+    t.bigint "requested_by_id"
     t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_items_on_cart_id"
+    t.index ["requested_by_id"], name: "index_items_on_requested_by_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -53,5 +55,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_033046) do
   end
 
   add_foreign_key "carts", "users", column: "created_by_id"
+  add_foreign_key "items", "users", column: "requested_by_id"
   add_foreign_key "users", "rooms", column: "part_of_id"
 end
