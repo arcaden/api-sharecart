@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :rooms
-        resources :carts
+        resources :carts do 
+          resources :items, only: [:index, :create]
+        end
+        resources :items, only: [:show, :update, :destroy]
       end
     end
 
