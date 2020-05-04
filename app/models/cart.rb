@@ -7,7 +7,7 @@ class Cart < ApplicationRecord
 
   def self.user_carts(user)
     room = Room.find(user.part_of_id)
-    carts = Cart.find_by(room_id: room.id)
+    carts = Cart.where(room_id: room.id)
   end
 
   def self.create_cart(params, user)
